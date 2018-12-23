@@ -538,6 +538,31 @@ declare namespace WeApp {
          * @since 2.1.0
          */
         getLogManager(): LogManager;
+
+        /**
+         * 获取全局唯一的版本更新管理器，用于管理小程序更新。
+         * @since 1.9.90
+         */
+        getUpdateManager(): UpdateManager;
+
+        /**
+         * 动态设置 tabBar 的整体样式
+         * @param param 
+         */
+        setTabBarStyle(param: SetTabBarStyleParam): void;
+
+        /**
+         * 显示  tabBar 某一项的右上角的红点
+         * @param param 
+         * @since 1.9.0
+         */
+        showTabBarRedDot(param: TabBarRedDotParam): void;
+        /**
+         * 隐藏 tabBar 某一项的右上角的红点
+         * @param param
+         * @since 1.9.0 
+         */
+        hideTabBarRedDot(param: TabBarRedDotParam): void;
     }
     // #endregion
 
@@ -2171,4 +2196,65 @@ declare namespace WeApp {
     }
     // #endregion
 
+    interface UpdateManager {
+        /**
+         * 强制小程序重启并使用新版本。在小程序新版本下载完成后（即收到 onUpdateReady 回调）调用。
+         */
+        applyUpdate(): void;
+
+        /**
+         * 监听向微信后台请求检查更新结果事件。微信在小程序冷启动时自动检查更新，不需由开发者主动触发。
+         */
+        onCheckForUpdate(callback: (res: { hasUpdate: boolean }) => void);
+
+
+        /**
+         * 监听小程序有版本更新事件。客户端主动触发下载（无需开发者触发），下载成功后回调
+         */
+        onUpdateReady(callback: Function);
+
+
+        /**
+         * 监听小程序更新失败事件。小程序有新版本，客户端主动触发下载（无需开发者触发），下载失败（可能是网络原因等）后回调 
+         */
+        onUpdateFailed(callback: Function);
+
+    }
+
+    interface SetTabBarStyleParam {
+        /**tab 上的文字默认颜色，HexColor */
+        color: string;
+
+        /**tab 上的文字选中时的颜色，HexColor */
+        selectedColor: string;
+
+        /**tab 的背景色，HexColor */
+        backgroundColor: string;
+
+        /**tabBar上边框的颜色， 仅支持 black / white */
+        borderStyle: string;
+
+        /**接口调用成功的回调函数 */
+        success: Function;
+
+        /**接口调用失败的回调函数 */
+        fail: Function;
+
+        /**接口调用结束的回调函数（调用成功、失败都会执行） */
+        complete: Function;
+    }
+
+    /**
+     * 显示或隐藏 tabBar 某一项的右上角的红点的参数
+     */
+    interface TabBarRedDotParam {
+        /**tabBar 的哪一项，从左边算起 */
+        index: number;
+        /**接口调用成功的回调函数 */
+        success: Function;
+        /**接口调用失败的回调函数 */
+        fail: Function;
+        /**接口调用结束的回调函数（调用成功、失败都会执行） */
+        complete: Function;
+    }
 }
