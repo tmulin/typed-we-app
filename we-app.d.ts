@@ -2235,13 +2235,13 @@ declare namespace WeApp {
         borderStyle: string;
 
         /**接口调用成功的回调函数 */
-        success: Function;
+        success?: Function;
 
         /**接口调用失败的回调函数 */
-        fail: Function;
+        fail?: Function;
 
         /**接口调用结束的回调函数（调用成功、失败都会执行） */
-        complete: Function;
+        complete?: Function;
     }
 
     /**
@@ -2251,10 +2251,10 @@ declare namespace WeApp {
         /**tabBar 的哪一项，从左边算起 */
         index: number;
         /**接口调用成功的回调函数 */
-        success: Function;
+        success?: Function;
         /**接口调用失败的回调函数 */
-        fail: Function;
+        fail?: Function;
         /**接口调用结束的回调函数（调用成功、失败都会执行） */
-        complete: Function;
+        complete?: Function;
     }
 }
