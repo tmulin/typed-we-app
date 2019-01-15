@@ -1828,16 +1828,22 @@ declare namespace WeApp {
 
     interface SettingParam extends CallbackParam {
         success: (res: {
+            authSetting: {
             /**用户信息 */
             'scope.userInfo': boolean;
             /**地理位置 */
             'scope.userLocation': boolean;
             /**通讯地址 */
             'scope.address': boolean;
+            /**微信运动步数*/
+            'scope.werun': boolean;
             /**录音功能 */
             'scope.record': boolean;
+            /**是否授权摄像头*/
+            'scope.camera': boolean;
             /**保存到相册 */
             'scope.writePhotosAlbum': boolean;
+          }
         }) => void;
     }
 
