@@ -508,7 +508,7 @@ declare namespace WeApp {
         /**监听用户主动截屏事件 用户使用系统截屏按键截屏时触发此事件 */
         onUserCaptureScreen(callback?: Function): never;
         /**将页面滚动到目标位置 单位px */
-        pageScrollTo(scrollTop: number): never;
+        pageScrollTo(param:PageScrollToParam): never;
         /**支持小程序修改标题栏颜色 */
         setNavigationBarColor(param: SetNavigationBarColorParam): never;
         /**设置是否打开调试开关 此开关对正式版也能生效 */
@@ -2260,6 +2260,23 @@ declare namespace WeApp {
         success?: Function;
         /**接口调用失败的回调函数 */
         fail?: Function;
+        /**接口调用结束的回调函数（调用成功、失败都会执行） */
+        complete?: Function;
+    }
+    
+    interface PageScrollToParam {
+        /** 滚动到页面的目标位置，单位 px */
+        scrollTop: number;
+        
+        /** 滚动动画的时长，单位 ms */
+        duration?: number;
+        
+        /**接口调用成功的回调函数 */
+        success?: Function;
+
+        /**接口调用失败的回调函数 */
+        fail?: Function;
+
         /**接口调用结束的回调函数（调用成功、失败都会执行） */
         complete?: Function;
     }
